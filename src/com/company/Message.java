@@ -40,7 +40,7 @@ public class Message {
                         " VALUES (?,?,?,?,?,?)";
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(SQL)){
-            pstmt.setString(1,mailID);
+            pstmt.setInt(1,mailID);
             pstmt.setString(2,subject);
             pstmt.setString(3,body);
             pstmt.setInt(4,fromUserID);
