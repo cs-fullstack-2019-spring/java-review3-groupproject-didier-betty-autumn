@@ -38,7 +38,7 @@ public class Main {
 
 
 
-//        welcomePrompt();
+        welcomePrompt();
     }
 
 //    welcome prompt: register or sign in
