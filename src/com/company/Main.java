@@ -24,13 +24,20 @@ public class Main {
 
 //    initial call
     public static void main(String[] args) {
-//        User user1 = new User();
-//        try{
-//            user1.selectUser();
-//        }
-//        catch(SQLException e){
-//            e.getMessage();
-//        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         welcomePrompt();
     }
 
