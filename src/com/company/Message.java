@@ -12,7 +12,6 @@ public class Message {
         return DriverManager.getConnection(url, user, password);
     }
 
-
     //    setting up message properties
     private int mailID;
     private String messageSubject;
@@ -22,66 +21,54 @@ public class Message {
     private int sentUserID;
     private int dateTimeSent;
 
-    public void setmailID(int newMailID) {
-        this.mailID = newMailID;
+
+    public static void displayResults(ResultSet rs)throws SQLException {
+        while (rs.next()) {
+            System.out.print("mailID: " + rs.getString(1));
+            System.out.print("messageSubject: " + rs.getString(2));
+            System.out.print(" messageBody: " + rs.getString(3));
+            System.out.println(" fromUserID: " + rs.getString(4));
+            System.out.println(" sentUserID: " + rs.getString(5));
+            System.out.println(" dateTimeSent: " + rs.getString(6));
+        }
     }
 
-    public void setMessageSubject(String newMessageSubject) {
-        this.messageSubject = newMessageSubject;
+    //    Create Message records from the database
+    public static void createMessage(int messageID, String messageSubject, String messageBody, int fromUserID, int fromSentID, int dateTimeSent){
+        String SQL =
+                "INSERT INTO ccmail (messageID, messageSubject, messageBody, fromUserID, sentUserID, dateTimeSent) "+
+                        " VALUES (?,?,?,?,?,?)";
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(SQL)){
+            pstmt.setString(1,messageID);
+            pstmt.setString(2,messageSubject);
+            pstmt.setString(3,messageBody);
+            pstmt.setInt(4,fromUserID);
+            pstmt.setInt(5,fromSentID);
+            pstmt.setInt(6,dateTimeSent);
+            ResultSet rs = pstmt.executeQuery();
+        }
+        catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
     }
 
-    public void setMessageBody(String newMessageBody) {
-        this.messageBody = newMessageBody;
-    }
+    //    SELECT all Message records from the database
+    public static void listMail(){
+        String SQL =
+                "SELECT * " + "FROM ccmail";
 
-    public void setFromUserID(int newFromUserID) {
-        this.fromUserID = newFromUserID;
-    }
-
-    public int getDateTimeSent() {
-        return dateTimeSent;
-    }
-
-    public int getSentUserID() {
-        return sentUserID;
-    }
-
-    //    List all Mail
-    private void listMail() throws SQLException {
-        String selectSQL = "SELECT * FROM ccmail";
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        try {
-            conn = connect();
-            pstmt = conn.prepareStatement(selectSQL);
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(SQL)){
 
             ResultSet rs = pstmt.executeQuery();
-            System.out.println("List Messages");
-            while (rs.next()) {
-                System.out.println(String.format("%s\t%s\t%s\t%s\t%s",
-                        rs.getString("mailID"),
-                        rs.getString("messageSubject"),
-                        rs.getString("messageBody"),
-                        rs.getInt("fromUserID"),
-                        rs.getInt("fromSentID"),
-                        rs.getInt("dateTimeSent")));
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        } finally {
-
-            if (pstmt != null) {
-                pstmt.close();
-            }
-
-            if (conn != null) {
-                conn.close();
-            }
-
+            displayResults(rs);
+        }
+        catch (SQLException e){
+            System.out.println(e.getMessage());
         }
     }
 
 
-        }
+
 

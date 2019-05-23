@@ -18,7 +18,7 @@ public class User {
         return conn;
     }
 
-    private void newUser(String username, String password) throws SQLException{
+    public void newUser(String username, String password) throws SQLException{
         String insertSQL = "INSERT INTO usertable (username,password) VALUES(?,?)";
         Connection conn = null;
         PreparedStatement createnewuser = null;
@@ -43,4 +43,27 @@ public class User {
             }
         }
     }
+
+    public void selectUser(String username, String password) throws SQLException{
+        String selectSQL = "SELECT * from usertable";
+
+        try{
+            Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(selectSQL);
+            ResultSet rs = pstmt.executeQuery();
+            resultsFromTable(rs);
+
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void resultsFromTable(ResultSet rs) throws SQLException{
+        while (rs.next()) {
+            System.out.println("Username: "+rs.getString(2));
+            System.out.println("Username: "+rs.getString(3));
+        }
+    }
+
 }
