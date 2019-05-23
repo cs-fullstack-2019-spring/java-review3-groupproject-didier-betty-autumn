@@ -44,17 +44,18 @@ public class User {
         }
     }
 
-    public void selectUser(String username, String password) throws SQLException{
+    public void selectUser() throws SQLException{
         String selectSQL = "SELECT * from usertable";
 
         try{
             Connection conn = connect();
             PreparedStatement pstmt = conn.prepareStatement(selectSQL);
+
             ResultSet rs = pstmt.executeQuery();
             resultsFromTable(rs);
 
         }
-        catch (Exception ex){
+        catch (SQLException ex){
             System.out.println(ex.getMessage());
         }
     }
@@ -62,7 +63,7 @@ public class User {
     public void resultsFromTable(ResultSet rs) throws SQLException{
         while (rs.next()) {
             System.out.println("Username: "+rs.getString(2));
-            System.out.println("Username: "+rs.getString(3));
+            System.out.println("Password: "+rs.getString(3));
         }
     }
 
