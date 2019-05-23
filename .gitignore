@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 *.iml
 out/
+=======
+.idea/
+out/
+java-review3-groupproject-didier-betty-autumn.iml
+>>>>>>> 3a33b23fcb801ef0efd491d4e59b77beb4076e8f
