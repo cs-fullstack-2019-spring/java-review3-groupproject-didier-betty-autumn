@@ -22,16 +22,23 @@ public class Main {
         return conn;
     }
 
-//    initial call
+//    initial callmailid
     public static void main(String[] args) {
-//        User user1 = new User();
-//        try{
-//            user1.selectUser();
-//        }
-//        catch(SQLException e){
-//            e.getMessage();
-//        }
-        welcomePrompt();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        welcomePrompt();
     }
 
 //    welcome prompt: register or sign in
