@@ -3,12 +3,12 @@ package com.company;
 import java.sql.*;
 
 public class Message {
-    private final String url = "postgresql://138.197.107.95:5432/group2";
-    private final String user = "student";
-    private final String password = "C0d3Cr3w";
+    private static String url = "postgresql://138.197.107.95:5432/group2";
+    private static String user = "student";
+    private static String password = "C0d3Cr3w";
 
     // Convenience method to get a JDBC cnxn
-    private Connection connect() throws SQLException {
+    private static Connection connect() throws SQLException {
         return DriverManager.getConnection(url, user, password);
     }
 
@@ -68,6 +68,7 @@ public class Message {
             System.out.println(e.getMessage());
         }
     }
+}
 
 
 
