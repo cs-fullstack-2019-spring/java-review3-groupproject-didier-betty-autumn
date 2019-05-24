@@ -14,7 +14,7 @@ public class Main {
         Connection conn = null;
         try{
             conn = DriverManager.getConnection(url, user, password);
-            System.out.println("Connected!");
+//            System.out.println("Connected!");
         }
         catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -38,7 +38,7 @@ public class Main {
 
 
 
-        welcomePrompt();
+//        welcomePrompt();
     }
 
 //    welcome prompt: register or sign in
