@@ -139,7 +139,7 @@ public class Main {
     private static void checkMail(int loggedInUserID){
         Message newMessage = new Message();
         System.out.println("Choose a mail item");
-        newMessage.listMail();
+        newMessage.listMail(loggedInUserID);
         ArrayList<ArrayList> mailItemArray = new ArrayList<>();
         //todo: put message records into an array and loop through those messages(maybe array in array) PK
         //todo: when a message record is chosen (by ID?) give more options

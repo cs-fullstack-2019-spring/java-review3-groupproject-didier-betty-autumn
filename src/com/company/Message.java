@@ -27,9 +27,9 @@ public class Message {
             System.out.print("mailid: " + rs.getString(1));
             System.out.print("subject: " + rs.getString(2));
             System.out.print(" body: " + rs.getString(3));
-            System.out.println(" fromuserid: " + rs.getString(4));
-            System.out.println(" sentuserid: " + rs.getString(5));
-            System.out.println(" datetimesent: " + rs.getString(6));
+            System.out.println(" fromuserid: " + rs.getString(5));
+            System.out.println(" sentuserid: " + rs.getString(6));
+            System.out.println(" datetimesent: " + rs.getString(7));
         }
     }
 
@@ -46,20 +46,20 @@ public class Message {
             pstmt.setInt(3, fromUserID);
             pstmt.setInt(4, fromSentID);
             pstmt.setTimestamp(5, dateTimeSent);
-            ResultSet rs = pstmt.executeQuery();
+            int rs = pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
     //    SELECT all Message records from the database
-    public static void listMail() {
+    public static void listMail(int loggedInUserID) {
         String SQL =
-                "SELECT * " + "FROM ccmail";
+                "SELECT * " + "FROM ccmail WHERE sentuserid=?";
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-
+            pstmt.setInt(1, loggedInUserID);
             ResultSet rs = pstmt.executeQuery();
             displayResults(rs);
         } catch (SQLException e) {
