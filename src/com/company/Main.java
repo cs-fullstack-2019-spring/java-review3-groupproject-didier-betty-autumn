@@ -38,7 +38,7 @@ public class Main {
 
 
 
-//        welcomePrompt();
+        welcomePrompt();
     }
 
 //    welcome prompt: register or sign in
@@ -72,11 +72,18 @@ public class Main {
 //    register a user
     private static void newUserPrompt(){
         Scanner read = new Scanner(System.in);
+        User newUser = new User();
         System.out.println("Enter your username");
         String userName = read.nextLine();
         //todo: perform validation for unique username (check against user table records)
         System.out.println("Enter your password");
         String passWord = read.nextLine();
+        try{
+            newUser.newUser(userName,passWord);
+        }
+        catch (SQLException e){
+            e.getMessage();
+        }
         System.out.println("Username: " + userName + " Password: " + passWord);
         System.out.println("You will now be directed to sign in");
         System.out.println("------------------------------------");
