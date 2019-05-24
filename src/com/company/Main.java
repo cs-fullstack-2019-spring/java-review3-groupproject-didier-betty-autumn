@@ -139,8 +139,9 @@ public class Main {
 
 //    check mail
     private static void checkMail(String userName){
+        Message newMessage = new Message();
         System.out.println("Choose a mail item");
-        System.out.println(userName);
+        newMessage.listMail();
         ArrayList<ArrayList> mailItemArray = new ArrayList<>();
         //todo: put message records into an array and loop through those messages(maybe array in array) PK
         //todo: when a message record is chosen (by ID?) give more options
@@ -149,8 +150,22 @@ public class Main {
 
 //    send mail
     private static void sendMail(String userName){
+        Scanner read = new Scanner(System.in);
+        Message newMessage = new Message();
+        User newUser = new User();
         System.out.println("Choose a recipient");
-        System.out.println(userName);
+        try{
+            newUser.selectUser();
+        }
+        catch(SQLException e){
+            e.getMessage();
+        }
+        String recipient = read.nextLine();
+        System.out.println("Subject Line: ");
+        String subjectLine = read.nextLine();
+        System.out.println("Body: ");
+        String body = read.nextLine();
+        System.out.println("To: " + recipient + "From: " + userName + "Subject" + subjectLine + "Body: " + body);
         //todo: put users records into an array and loop through those users (maybe array in array)
         //todo: once user recipient is chosen (by ID?) give more prompts
         //sendMail prompts: subject, body (recipient is also a prompt but list of users is grabbed first)
