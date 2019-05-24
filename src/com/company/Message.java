@@ -1,4 +1,5 @@
 package com.company;
+
 import java.sql.*;
 
 public class Message {
@@ -21,7 +22,7 @@ public class Message {
     private int dateTimeSent;
 
 
-    public static void displayResults(ResultSet rs)throws SQLException {
+    public static void displayResults(ResultSet rs) throws SQLException {
         while (rs.next()) {
             System.out.print("mailid: " + rs.getString(1));
             System.out.print("subject: " + rs.getString(2));
@@ -33,37 +34,35 @@ public class Message {
     }
 
     //    Create Message records from the database
-    public static void createMessage(int mailID, String subject, String body, int fromUserID, int fromSentID, int dateTimeSent){
+    public static void createMessage(String subject, String body, int fromUserID, int fromSentID, int dateTimeSent) {
         String SQL =
-                "INSERT INTO ccmail (mailid, subject, body, fromUserID, sentUserID, dateTimeSent) "+
-                        " VALUES (?,?,?,?,?,?)";
+                "INSERT INTO ccmail ( subject, body, fromUserID, sentUserID, dateTimeSent) " +
+                        " VALUES (?,?,?,?,?)";
+
         try (Connection conn = connect();
-             PreparedStatement pstmt = conn.prepareStatement(SQL)){
-            pstmt.setInt(1,mailID);
-            pstmt.setString(2,subject);
-            pstmt.setString(3,body);
-            pstmt.setInt(4,fromUserID);
-            pstmt.setInt(5,fromSentID);
-            pstmt.setInt(6,dateTimeSent);
+             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+            pstmt.setString(1, subject);
+            pstmt.setString(2, body);
+            pstmt.setInt(3, fromUserID);
+            pstmt.setInt(4, fromSentID);
+            pstmt.setInt(5, dateTimeSent);
             ResultSet rs = pstmt.executeQuery();
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
     //    SELECT all Message records from the database
-    public static void listMail(){
+    public static void listMail() {
         String SQL =
                 "SELECT * " + "FROM ccmail";
 
         try (Connection conn = connect();
-             PreparedStatement pstmt = conn.prepareStatement(SQL)){
+             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
 
             ResultSet rs = pstmt.executeQuery();
             displayResults(rs);
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
