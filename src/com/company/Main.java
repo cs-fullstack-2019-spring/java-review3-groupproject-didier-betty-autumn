@@ -177,8 +177,6 @@ public class Main {
         newMessage.createMessage(subjectLine, body, loggedInUserID, recipientID, currentTimestamp);
 
         System.out.println("Message Sent!");
-        //todo: create message using vale
-        // s but deal with variable types
         signInPrompt();
     }
 
