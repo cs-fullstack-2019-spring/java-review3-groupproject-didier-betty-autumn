@@ -139,12 +139,12 @@ public class Main {
 
 //    check mail
     private static void checkMail(int loggedInUserID){
+        Scanner read = new Scanner(System.in);
         Message newMessage = new Message();
-        System.out.println("Choose a mail item");
         newMessage.listMail(loggedInUserID);
-        ArrayList<ArrayList> mailItemArray = new ArrayList<>();
-        //todo: put message records into an array and loop through those messages(maybe array in array) PK
-        //todo: when a message record is chosen (by ID?) give more options
+        System.out.println("Choose a mail item");
+        int mailID = read.nextInt();
+        newMessage.userMail(mailID);
         //checkMail options: Show message info in full (not an option), option to delete, option to go back
     }
 
