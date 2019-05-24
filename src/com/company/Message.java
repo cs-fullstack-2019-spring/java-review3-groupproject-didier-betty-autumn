@@ -1,7 +1,7 @@
 package com.company;
 
 import java.sql.*;
-
+//
 public class Message {
     private static String url = "jdbc:postgresql://138.197.107.95:5432/group2";
     private static String user = "student";
