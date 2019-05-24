@@ -163,7 +163,7 @@ public class Main {
         System.out.println("Body: ");
         String body = read.nextLine();
         System.out.println("To: " + recipientID + " From: " + loggedInUserID + " Subject: " + subjectLine + " Body: " + body);
-//        newMessage.createMessage(subjectLine,body,loggedInUserID,recipientID);
+        newMessage.createMessage(subjectLine,body,loggedInUserID,recipientID);
         //todo: create message using vales but deal with variable types
         //todo: once user recipient is chosen (by ID?) give more prompts
     }
