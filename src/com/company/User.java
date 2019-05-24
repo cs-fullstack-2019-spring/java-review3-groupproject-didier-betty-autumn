@@ -63,9 +63,7 @@ public class User {
 
     public void resultsFromTable(ResultSet rs) throws SQLException{
         while (rs.next()) {
-            System.out.println("UserID: "+rs.getString(1));
-            System.out.println("Username: "+rs.getString(2));
-            System.out.println("Password: "+rs.getString(3));
+            System.out.println(rs.getString(1)+". "+rs.getString(2));
         }
     }
 
