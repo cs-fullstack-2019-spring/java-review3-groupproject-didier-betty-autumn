@@ -1,5 +1,6 @@
 package com.company;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -126,10 +127,10 @@ public class Main {
         }
 
         if(userInput.toLowerCase().equals("a")){
-            checkMail();
+            checkMail(userName);
         }
         else if(userInput.toLowerCase().equals("b")){
-            sendMail();
+            sendMail(userName);
         }
         else if(userInput.toLowerCase().equals("c")){
             logOut();
@@ -137,16 +138,19 @@ public class Main {
     }
 
 //    check mail
-    private static void checkMail(){
+    private static void checkMail(String userName){
         System.out.println("Choose a mail item");
+        System.out.println(userName);
+        ArrayList<ArrayList> mailItemArray = new ArrayList<>();
         //todo: put message records into an array and loop through those messages(maybe array in array) PK
         //todo: when a message record is chosen (by ID?) give more options
         //checkMail options: Show message info in full (not an option), option to delete, option to go back
     }
 
 //    send mail
-    private static void sendMail(){
+    private static void sendMail(String userName){
         System.out.println("Choose a recipient");
+        System.out.println(userName);
         //todo: put users records into an array and loop through those users (maybe array in array)
         //todo: once user recipient is chosen (by ID?) give more prompts
         //sendMail prompts: subject, body (recipient is also a prompt but list of users is grabbed first)
