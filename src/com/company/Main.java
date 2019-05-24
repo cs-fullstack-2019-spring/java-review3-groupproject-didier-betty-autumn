@@ -93,11 +93,20 @@ public class Main {
 //    sign in an existing user
     private static void signInPrompt(){
         Scanner read = new Scanner(System.in);
+        User newUser = new User();
+
         System.out.println("Enter your username");
         String userName = read.nextLine();
         System.out.println("Enter your password");
         String passWord = read.nextLine();
+
         //todo: perform validation for correct sign in information (grab user from database using user class method)
+        try{
+            newUser.grabUser(userName);
+        }
+        catch(SQLException e){
+            e.getMessage();
+        }
         System.out.println("------------------------------------");
         System.out.println("Welcome " + userName);
         System.out.println("Please choose an option below:");

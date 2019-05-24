@@ -10,7 +10,7 @@ public class User {
         Connection conn = null;
         try{
             conn = DriverManager.getConnection(url, user, password);
-            System.out.println("Connected!");
+//            System.out.println("Connected!");
         }
         catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -62,8 +62,25 @@ public class User {
 
     public void resultsFromTable(ResultSet rs) throws SQLException{
         while (rs.next()) {
+            System.out.println("UserID: "+rs.getString(1));
             System.out.println("Username: "+rs.getString(2));
             System.out.println("Password: "+rs.getString(3));
+        }
+    }
+
+    public void grabUser(String userName) throws SQLException{
+        String selectSQL = "SELECT * from usertable where userName = ?";
+
+        try{
+            Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(selectSQL);
+            pstmt.setString(1,userName);
+            ResultSet rs = pstmt.executeQuery();
+            resultsFromTable(rs);
+
+        }
+        catch (SQLException ex){
+            System.out.println(ex.getMessage());
         }
     }
 
