@@ -144,19 +144,19 @@ public class Main {
         //todo: put message records into an array and loop through those messages(maybe array in array) PK
         //todo: when a message record is chosen (by ID?) give more options
         //checkMail options: Show message info in full (not an option), option to delete, option to go back
+        signInPrompt();
     }
 
 //    send mail
-    private static void sendMail(int loggedInUserID){
+    private static void sendMail(int loggedInUserID) {
         Scanner read = new Scanner(System.in);
         Message newMessage = new Message();
         User newUser = new User();
 
         System.out.println("Choose a recipient");
-        try{
+        try {
             newUser.selectUser();
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             e.getMessage();
         }
 
@@ -171,13 +171,13 @@ public class Main {
 
         java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
         System.out.println("To: " + recipientID + " From: " + loggedInUserID + " Subject: " + subjectLine + " Body: " + body);
-//        newMessage.createMessage(subjectLine,body,loggedInUserID,recipientID);
 
-        newMessage.createMessage(subjectLine,body,loggedInUserID,recipientID, currentTimestamp);
+        newMessage.createMessage(subjectLine, body, loggedInUserID, recipientID, currentTimestamp);
 
         System.out.println("Message Sent!");
         //todo: create message using vale
         // s but deal with variable types
+        signInPrompt();
     }
 
     private static void logOut(){
