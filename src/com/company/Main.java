@@ -157,7 +157,7 @@ public class Main {
         catch(SQLException e){
             e.getMessage();
         }
-        String recipientID = read.nextLine();
+        int recipientID = read.nextInt();
         System.out.println("Subject Line: ");
         String subjectLine = read.nextLine();
         System.out.println("Body: ");
@@ -165,7 +165,6 @@ public class Main {
         System.out.println("To: " + recipientID + " From: " + loggedInUserID + " Subject: " + subjectLine + " Body: " + body);
         newMessage.createMessage(subjectLine,body,loggedInUserID,recipientID);
         //todo: create message using vales but deal with variable types
-        //todo: once user recipient is chosen (by ID?) give more prompts
     }
 
     private static void logOut(){

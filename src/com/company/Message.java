@@ -34,10 +34,10 @@ public class Message {
     }
 
     //    Create Message records from the database
-    public static void createMessage(String subject, String body, int fromUserID, int fromSentID, int dateTimeSent) {
+    public static void createMessage(String subject, String body, int fromUserID, int fromSentID) {
         String SQL =
-                "INSERT INTO ccmail ( subject, body, fromUserID, sentUserID, dateTimeSent) " +
-                        " VALUES (?,?,?,?,?)";
+                "INSERT INTO ccmail ( subject, body, fromUserID, sentUserID) " +
+                        " VALUES (?,?,?,?)";
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(SQL)) {
@@ -45,7 +45,7 @@ public class Message {
             pstmt.setString(2, body);
             pstmt.setInt(3, fromUserID);
             pstmt.setInt(4, fromSentID);
-            pstmt.setInt(5, dateTimeSent);
+//            pstmt.setInt(5, dateTimeSent);
             ResultSet rs = pstmt.executeQuery();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
