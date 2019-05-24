@@ -24,12 +24,12 @@ public class Message {
 
     public static void displayResults(ResultSet rs) throws SQLException {
         while (rs.next()) {
-            System.out.print("mailid: " + rs.getString(1));
-            System.out.print("subject: " + rs.getString(2));
-            System.out.print(" body: " + rs.getString(3));
-            System.out.println(" fromuserid: " + rs.getString(5));
-            System.out.println(" sentuserid: " + rs.getString(6));
-            System.out.println(" datetimesent: " + rs.getString(7));
+            System.out.println("Item ID: " + rs.getString(1));
+            System.out.println("Subject: " + rs.getString(2));
+            System.out.println(" body: " + rs.getString(3));
+            System.out.println(" From: " + rs.getString(5));
+            System.out.print(" To: " + rs.getString(6));
+            System.out.print(" TimeStamp: " + rs.getString(7));
         }
     }
 
