@@ -28,7 +28,8 @@ public class Message {
             System.out.println(" subject: " + rs.getString(2));
 //            System.out.print(" body: " + rs.getString(3));
             System.out.print("fromuserid: " + rs.getString(5));
-            System.out.println(" sentuserid: " + rs.getString(6));
+//            System.out.println(" sentuserid: " + rs.getString(6));
+            System.out.println(" sentuserid: " + rs.getString(9));
 //            System.out.println(" datetimesent: " + rs.getString(7));
             System.out.println("----------------------");
         }
@@ -56,7 +57,7 @@ public class Message {
     //    List all Message records from the database
     public static void listMail(int loggedInUserID) {
         String SQL =
-                "SELECT * " + "FROM ccmail WHERE sentuserid=?";
+                "SELECT * " + "FROM ccmail JOIN usertable on sentuserid=userid  WHERE sentuserid=?";
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(SQL)) {
