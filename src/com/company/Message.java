@@ -1,7 +1,7 @@
 package com.company;
 
 import java.sql.*;
-//
+//connection
 public class Message {
     private static String url = "jdbc:postgresql://138.197.107.95:5432/group2";
     private static String user = "student";
@@ -21,7 +21,7 @@ public class Message {
     private int sentUserID;
     private int dateTimeSent;
 
-
+//display results shows mail in the db with id, subject, to and from
     public static void displayResults(ResultSet rs) throws SQLException {
         while (rs.next()) {
             System.out.print("mailid: " + rs.getString(1));
@@ -53,7 +53,7 @@ public class Message {
         }
     }
 
-    //    SELECT all Message records from the database
+    //    List all Message records from the database
     public static void listMail(int loggedInUserID) {
         String SQL =
                 "SELECT * " + "FROM ccmail WHERE sentuserid=?";
@@ -68,6 +68,7 @@ public class Message {
         }
 
     }
+//    allows users to select specific mail by id
     public static void userMail(int selectMail) {
         String SQL =
                 "SELECT * " + "FROM ccmail WHERE mailid=?";
@@ -83,6 +84,7 @@ public class Message {
 
 
     }
+//    displays all details of specific mail item chosen by user
     public static void selectedResults(ResultSet rs) throws SQLException {
         while (rs.next()) {
             System.out.print("mailid: " + rs.getString(1));
