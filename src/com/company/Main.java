@@ -164,6 +164,8 @@ public class Main {
         String body = read.nextLine();
         System.out.println("To: " + recipientID + " From: " + loggedInUserID + " Subject: " + subjectLine + " Body: " + body);
         newMessage.createMessage(subjectLine,body,loggedInUserID,recipientID);
+
+
         //todo: create message using vales but deal with variable types
     }
 
