@@ -25,11 +25,12 @@ public class Message {
     public static void displayResults(ResultSet rs) throws SQLException {
         while (rs.next()) {
             System.out.print("mailid: " + rs.getString(1));
-            System.out.print("subject: " + rs.getString(2));
-            System.out.print(" body: " + rs.getString(3));
-            System.out.println(" fromuserid: " + rs.getString(5));
+            System.out.println(" subject: " + rs.getString(2));
+//            System.out.print(" body: " + rs.getString(3));
+            System.out.print("fromuserid: " + rs.getString(5));
             System.out.println(" sentuserid: " + rs.getString(6));
-            System.out.println(" datetimesent: " + rs.getString(7));
+//            System.out.println(" datetimesent: " + rs.getString(7));
+            System.out.println("----------------------");
         }
     }
 
@@ -65,8 +66,37 @@ public class Message {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
     }
+    public static void userMail(int selectMail) {
+        String SQL =
+                "SELECT * " + "FROM ccmail WHERE mailid=?";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+            pstmt.setInt(1, selectMail);
+            ResultSet rs = pstmt.executeQuery();
+            selectedResults(rs);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+    }
+    public static void selectedResults(ResultSet rs) throws SQLException {
+        while (rs.next()) {
+            System.out.print("mailid: " + rs.getString(1));
+            System.out.println(" subject: " + rs.getString(2));
+            System.out.print(" body: " + rs.getString(3));
+            System.out.print("fromuserid: " + rs.getString(5));
+            System.out.println(" sentuserid: " + rs.getString(6));
+            System.out.println(" datetimesent: " + rs.getString(7));
+            System.out.println("----------------------");
+        }
+    }
+
 }
+
 
 
 
