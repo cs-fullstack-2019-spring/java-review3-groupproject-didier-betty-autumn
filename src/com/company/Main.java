@@ -1,6 +1,8 @@
 package com.company;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class Main {
@@ -162,8 +164,9 @@ public class Main {
         String subjectLine = read.nextLine();
         System.out.println("Body: ");
         String body = read.nextLine();
+        java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
         System.out.println("To: " + recipientID + " From: " + loggedInUserID + " Subject: " + subjectLine + " Body: " + body);
-        newMessage.createMessage(subjectLine,body,loggedInUserID,recipientID);
+        newMessage.createMessage(subjectLine,body,loggedInUserID,recipientID, currentTimestamp);
         //todo: create message using vales but deal with variable types
     }
 
