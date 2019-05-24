@@ -1,5 +1,6 @@
 package com.company;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class User {
     private static String url = "jdbc:postgresql://138.197.107.95:5432/group2";
@@ -68,7 +69,8 @@ public class User {
         }
     }
 
-    public void grabUser(String userName) throws SQLException{
+    public ArrayList grabUser(String userName){
+        ArrayList<String> userArray = new ArrayList<>();
         String selectSQL = "SELECT * from usertable where userName = ?";
 
         try{
@@ -76,12 +78,16 @@ public class User {
             PreparedStatement pstmt = conn.prepareStatement(selectSQL);
             pstmt.setString(1,userName);
             ResultSet rs = pstmt.executeQuery();
-            resultsFromTable(rs);
-
+            int i = 1;
+            while (rs.next()){
+                userArray.add(rs.getString(i));
+                i++;
+            }
         }
         catch (SQLException ex){
             System.out.println(ex.getMessage());
         }
+        return userArray;
     }
 
 }

@@ -102,12 +102,8 @@ public class Main {
         String passWord = read.nextLine();
 
         //todo: perform validation for correct sign in information (grab user from database using user class method)
-        try{
-            newUser.grabUser(userName);
-        }
-        catch(SQLException e){
-            e.getMessage();
-        }
+//        System.out.println(newUser.grabUser(userName).get(0));
+        String loggedInUserID = (String)newUser.grabUser(userName).get(0);
         System.out.println("------------------------------------");
         System.out.println("Welcome " + userName);
         System.out.println("Please choose an option below:");
@@ -127,10 +123,10 @@ public class Main {
         }
 
         if(userInput.toLowerCase().equals("a")){
-            checkMail(userName);
+            checkMail(loggedInUserID);
         }
         else if(userInput.toLowerCase().equals("b")){
-            sendMail(userName);
+            sendMail(loggedInUserID);
         }
         else if(userInput.toLowerCase().equals("c")){
             logOut();
@@ -138,7 +134,7 @@ public class Main {
     }
 
 //    check mail
-    private static void checkMail(String userName){
+    private static void checkMail(String loggedInUserID){
         Message newMessage = new Message();
         System.out.println("Choose a mail item");
         newMessage.listMail();
@@ -149,26 +145,27 @@ public class Main {
     }
 
 //    send mail
-    private static void sendMail(String userName){
+    private static void sendMail(String loggedInUserID){
         Scanner read = new Scanner(System.in);
         Message newMessage = new Message();
         User newUser = new User();
         System.out.println("Choose a recipient");
+        //todo: put users records into an array and loop through those users (maybe array in array)
         try{
             newUser.selectUser();
         }
         catch(SQLException e){
             e.getMessage();
         }
-        String recipient = read.nextLine();
+        String recipientID = read.nextLine();
         System.out.println("Subject Line: ");
         String subjectLine = read.nextLine();
         System.out.println("Body: ");
         String body = read.nextLine();
-        System.out.println("To: " + recipient + "From: " + userName + "Subject" + subjectLine + "Body: " + body);
-        //todo: put users records into an array and loop through those users (maybe array in array)
+        System.out.println("To: " + recipientID + " From: " + loggedInUserID + " Subject: " + subjectLine + " Body: " + body);
+//        newMessage.createMessage(subjectLine,body,loggedInUserID,recipientID);
+        //todo: create message using vales but deal with variable types
         //todo: once user recipient is chosen (by ID?) give more prompts
-        //sendMail prompts: subject, body (recipient is also a prompt but list of users is grabbed first)
     }
 
     private static void logOut(){
