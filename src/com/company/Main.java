@@ -102,8 +102,8 @@ public class Main {
         String passWord = read.nextLine();
 
         //todo: perform validation for correct sign in information (grab user from database using user class method)
-//        System.out.println(newUser.grabUser(userName).get(0));
-        String loggedInUserID = (String)newUser.grabUser(userName).get(0);
+        System.out.println(newUser.grabUser(userName).get(0));
+        int loggedInUserID = (int)newUser.grabUser(userName).get(0);
         System.out.println("------------------------------------");
         System.out.println("Welcome " + userName);
         System.out.println("Please choose an option below:");
@@ -134,7 +134,7 @@ public class Main {
     }
 
 //    check mail
-    private static void checkMail(String loggedInUserID){
+    private static void checkMail(int loggedInUserID){
         Message newMessage = new Message();
         System.out.println("Choose a mail item");
         newMessage.listMail();
@@ -145,7 +145,7 @@ public class Main {
     }
 
 //    send mail
-    private static void sendMail(String loggedInUserID){
+    private static void sendMail(int loggedInUserID){
         Scanner read = new Scanner(System.in);
         Message newMessage = new Message();
         User newUser = new User();
@@ -163,7 +163,7 @@ public class Main {
         System.out.println("Body: ");
         String body = read.nextLine();
         System.out.println("To: " + recipientID + " From: " + loggedInUserID + " Subject: " + subjectLine + " Body: " + body);
-//        newMessage.createMessage(subjectLine,body,loggedInUserID,recipientID);
+        newMessage.createMessage(subjectLine,body,loggedInUserID,recipientID);
         //todo: create message using vales but deal with variable types
         //todo: once user recipient is chosen (by ID?) give more prompts
     }

@@ -68,7 +68,7 @@ public class User {
     }
 
     public ArrayList grabUser(String userName){
-        ArrayList<String> userArray = new ArrayList<>();
+        ArrayList<Integer> userArray = new ArrayList<>();
         String selectSQL = "SELECT * from usertable where userName = ?";
 
         try{
@@ -76,10 +76,8 @@ public class User {
             PreparedStatement pstmt = conn.prepareStatement(selectSQL);
             pstmt.setString(1,userName);
             ResultSet rs = pstmt.executeQuery();
-            int i = 1;
             while (rs.next()){
-                userArray.add(rs.getString(i));
-                i++;
+                userArray.add(rs.getInt(1));
             }
         }
         catch (SQLException ex){
