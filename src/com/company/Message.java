@@ -46,7 +46,7 @@ public class Message {
             pstmt.setInt(3, fromUserID);
             pstmt.setInt(4, fromSentID);
             pstmt.setTimestamp(5, dateTimeSent);
-            ResultSet rs = pstmt.executeQuery();
+            int rs = pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
