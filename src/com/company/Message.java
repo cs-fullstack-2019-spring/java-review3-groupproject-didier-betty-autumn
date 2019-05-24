@@ -1,7 +1,7 @@
 package com.company;
 
 import java.sql.*;
-
+//
 public class Message {
     private static String url = "jdbc:postgresql://138.197.107.95:5432/group2";
     private static String user = "student";
@@ -24,12 +24,22 @@ public class Message {
 
     public static void displayResults(ResultSet rs) throws SQLException {
         while (rs.next()) {
+<<<<<<< HEAD
             System.out.println("Item ID: " + rs.getString(1));
             System.out.println("Subject: " + rs.getString(2));
             System.out.println(" body: " + rs.getString(3));
             System.out.println(" From: " + rs.getString(5));
             System.out.print(" To: " + rs.getString(6));
             System.out.print(" TimeStamp: " + rs.getString(7));
+=======
+            System.out.print("mailid: " + rs.getString(1));
+            System.out.println(" subject: " + rs.getString(2));
+//            System.out.print(" body: " + rs.getString(3));
+            System.out.print("fromuserid: " + rs.getString(5));
+            System.out.println(" sentuserid: " + rs.getString(6));
+//            System.out.println(" datetimesent: " + rs.getString(7));
+            System.out.println("----------------------");
+>>>>>>> 290f03bb8a17a41af261b510eee09a95d7c74830
         }
     }
 
@@ -65,8 +75,37 @@ public class Message {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
     }
+    public static void userMail(int selectMail) {
+        String SQL =
+                "SELECT * " + "FROM ccmail WHERE mailid=?";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+            pstmt.setInt(1, selectMail);
+            ResultSet rs = pstmt.executeQuery();
+            selectedResults(rs);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+    }
+    public static void selectedResults(ResultSet rs) throws SQLException {
+        while (rs.next()) {
+            System.out.print("mailid: " + rs.getString(1));
+            System.out.println(" subject: " + rs.getString(2));
+            System.out.print(" body: " + rs.getString(3));
+            System.out.print("fromuserid: " + rs.getString(5));
+            System.out.println(" sentuserid: " + rs.getString(6));
+            System.out.println(" datetimesent: " + rs.getString(7));
+            System.out.println("----------------------");
+        }
+    }
+
 }
+
 
 
 
