@@ -151,22 +151,28 @@ public class Main {
         Scanner read = new Scanner(System.in);
         Message newMessage = new Message();
         User newUser = new User();
+
         System.out.println("Choose a recipient");
-        //todo: put users records into an array and loop through those users (maybe array in array)
         try{
             newUser.selectUser();
         }
         catch(SQLException e){
             e.getMessage();
         }
+
         int recipientID = read.nextInt();
+
         System.out.println("Subject Line: ");
+        String tester = read.nextLine();
         String subjectLine = read.nextLine();
+
         System.out.println("Body: ");
         String body = read.nextLine();
+
         java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
         System.out.println("To: " + recipientID + " From: " + loggedInUserID + " Subject: " + subjectLine + " Body: " + body);
         newMessage.createMessage(subjectLine,body,loggedInUserID,recipientID, currentTimestamp);
+        System.out.println("Message Sent!");
         //todo: create message using vales but deal with variable types
     }
 
